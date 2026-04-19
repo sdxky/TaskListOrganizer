@@ -58,35 +58,35 @@ public class Task {
 
     public void moveToInProgress(TaskManager manager) {
         if (state == null) {
-            throw new IllegalStateException("Состояние задачи не инициализировано");
+            throw new IllegalStateException("Task state is not initialized");
         }
         state.moveToInProgress(this);
     }
 
     public void moveToDone(TaskManager manager) {
         if (state == null) {
-            throw new IllegalStateException("Состояние задачи не инициализировано");
+            throw new IllegalStateException("Task state is not initialized");
         }
         state.moveToDone(this);
     }
 
     public void changeDescriptionByState(String description) {
         if (state == null) {
-            throw new IllegalStateException("Состояние задачи не инициализировано");
+            throw new IllegalStateException("Task state is not initialized");
         }
         state.changeDescription(this, description);
     }
 
     public void deleteByState(TaskManager manager) {
         if (state == null) {
-            throw new IllegalStateException("Состояние задачи не инициализировано");
+            throw new IllegalStateException("Task state is not initialized");
         }
         state.delete(this, manager);
     }
 
     public void setState(TaskState state) {
         if (state == null) {
-            throw new IllegalArgumentException("State не может быть null");
+            throw new IllegalArgumentException("State cannot be null");
         }
         this.state = state;
         this.status = state.getStatus();

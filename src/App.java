@@ -31,7 +31,7 @@ public class App {
             int choice = input.readMenuChoice();
 
             if (choice == 0) {
-                System.out.println("Выход из программы. До свидания.");
+                System.out.println("Exiting the program. Goodbye.");
                 return;
             }
 
@@ -56,7 +56,7 @@ public class App {
                 continue;
             }
 
-            System.out.println("Ошибка: такого пункта меню нет.");
+            System.out.println("Error: no such menu option.");
         }
     }
 
@@ -68,19 +68,19 @@ public class App {
 
     private void addTask() {
         System.out.println();
-        System.out.println("Добавление новой задачи.");
+        System.out.println("Adding a new task.");
 
-        String title = input.readNonEmpty("Введите название задачи (title): ");
-        String description = input.readNonEmpty("Введите описание задачи (description): ");
+        String title = input.readNonEmpty("Enter task title (title): ");
+        String description = input.readNonEmpty("Enter task description (description): ");
         Priority priority = input.readPriority();
-        LocalDate completionDate = input.readDate("Введите дату завершения (completionDate) в формате dd.MM.yyyy: ");
+        LocalDate completionDate = input.readDate("Enter completion date (completionDate) in format dd.MM.yyyy: ");
         LocalDate createdDate = LocalDate.now();
 
         Task task = new Task(title, description, completionDate, createdDate, priority, Status.NEW);
         task.setState(new NewState());
         manager.addTask(task);
 
-        System.out.println("Задача успешно добавлена.");
+        System.out.println("Task added successfully.");
         showTasks();
     }
 
@@ -88,7 +88,7 @@ public class App {
         List<Task> tasks = manager.getAllTasks();
 
         if (tasks.isEmpty()) {
-            System.out.println("Список задач пуст.");
+            System.out.println("The task list is empty.");
             return;
         }
 
@@ -96,10 +96,10 @@ public class App {
 
         int index;
         while (true) {
-            System.out.print("Введите номер задачи: ");
+            System.out.print("Enter task number: ");
             index = input.readMenuChoice();
             if (index >= 1 && index <= tasks.size()) break;
-            System.out.println("Ошибка: неверный номер.");
+            System.out.println("Error: invalid number.");
         }
 
         Task task = tasks.get(index - 1);
@@ -109,13 +109,13 @@ public class App {
     private void manageTask(Task task) {
         while (true) {
             System.out.println();
-            System.out.println("Задача: " + task.getTitle());
-            System.out.println("Статус: " + task.getStatus());
+            System.out.println("Task: " + task.getTitle());
+            System.out.println("Status: " + task.getStatus());
 
-            System.out.println("1) Изменить статус");
-            System.out.println("2) Изменить описание");
-            System.out.println("3) Удалить задачу");
-            System.out.println("0) Назад");
+            System.out.println("1) Change status");
+            System.out.println("2) Change description");
+            System.out.println("3) Delete task");
+            System.out.println("0) Back");
 
             int choice = input.readMenuChoice();
 
@@ -123,27 +123,27 @@ public class App {
                 if (choice == 1) {
                     changeStatus(task);
                 } else if (choice == 2) {
-                    String desc = input.readNonEmpty("Введите новое описание: ");
+                    String desc = input.readNonEmpty("Enter new description: ");
                     task.changeDescriptionByState(desc);
                     manager.save();
-                    System.out.println("Описание изменено.");
+                    System.out.println("Description updated.");
                 } else if (choice == 3) {
                     task.deleteByState(manager);
-                    System.out.println("Задача удалена.");
+                    System.out.println("Task deleted.");
                     return;
                 } else if (choice == 0) {
                     return;
                 } else {
-                    System.out.println("Неверный пункт меню.");
+                    System.out.println("Invalid menu option.");
                 }
             } catch (IllegalStateException e) {
-                System.out.println("Ошибка: " + e.getMessage());
+                System.out.println("Error: " + e.getMessage());
             }
         }
     }
 
     private void changeStatus(Task task) {
-        System.out.println("Выберите новый статус:");
+        System.out.println("Select new status:");
         System.out.println("1) IN_PROGRESS");
         System.out.println("2) DONE");
 
@@ -152,30 +152,30 @@ public class App {
         if (choice == 1) {
             task.moveToInProgress(manager);
             manager.save();
-            System.out.println("Статус изменён на IN_PROGRESS.");
+            System.out.println("Status changed to IN_PROGRESS.");
         } else if (choice == 2) {
             task.moveToDone(manager);
             manager.save();
-            System.out.println("Статус изменён на DONE.");
+            System.out.println("Status changed to DONE.");
         } else {
-            System.out.println("Неверный выбор.");
+            System.out.println("Invalid choice.");
         }
     }
 
     private void sortMenu() {
         while (true) {
             System.out.println();
-            System.out.println("Сортировка задач:");
-            System.out.println("1) По приоритету");
-            System.out.println("2) По дате создания");
-            System.out.println("3) По описанию");
-            System.out.println("0) Назад");
+            System.out.println("Task sorting:");
+            System.out.println("1) By priority");
+            System.out.println("2) By creation date");
+            System.out.println("3) By description");
+            System.out.println("0) Back");
 
             int choice = input.readMenuChoice();
             List<Task> tasks = manager.getAllTasks();
 
             if (tasks.isEmpty()) {
-                System.out.println("Список задач пуст.");
+                System.out.println("The task list is empty.");
                 return;
             }
 
@@ -191,7 +191,7 @@ public class App {
             } else if (choice == 0) {
                 return;
             } else {
-                System.out.println("Неверный пункт меню.");
+                System.out.println("Invalid menu option.");
                 continue;
             }
 

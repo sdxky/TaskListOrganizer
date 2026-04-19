@@ -9,8 +9,11 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-//        TaskJsonStorage storage = new TaskJsonStorage("data/tasks.json");
-        TaskStorage storage = new TaskPostgresStorage("jdbc:postgresql://localhost:5432/postgres");
+        TaskStorage storage;
+        TaskStorage storageJSON = new TaskJsonStorage("data/tasks.json");
+        TaskStorage storagePostgres = new TaskPostgresStorage("jdbc:postgresql://localhost:5432/postgres");
+        System.out.println("Connect to " +
+                "1) PostgreSQL database or JSON database");
         TaskManager manager = new TaskManager(storage);
         Input input = new Input(new Scanner(System.in));
         TaskPrinter printer = new TaskPrinter();

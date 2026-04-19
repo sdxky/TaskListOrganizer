@@ -10,11 +10,10 @@ public class TaskPrinter {
     public void print(List<Task> tasks) {
         System.out.println();
         if (tasks.isEmpty()) {
-            System.out.println("Список задач пуст. Добавьте первую задачу через меню.");
-            return;
+            System.out.println("The task list is empty. Add your first task through the menu.");            return;
         }
 
-        System.out.println("Список задач:");
+        System.out.println("Task list:");
         System.out.println("---------------------------------------------------------------------------------------------");
         System.out.printf("%-3s %-2s %-20s %-10s %-12s %-12s %-10s %-30s%n",
                 "#", "*", "title", "priority", "createdDate", "completionDate", "status", "description");
@@ -39,7 +38,7 @@ public class TaskPrinter {
         }
 
         System.out.println("---------------------------------------------------------------------------------------------");
-        System.out.println("* — просроченная задача (completionDate раньше сегодняшней даты)");
+        System.out.println("* — overdue task (completionDate is earlier than today's date)");
     }
 
     private String safe(String value, int maxLen) {

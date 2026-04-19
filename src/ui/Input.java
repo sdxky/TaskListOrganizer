@@ -27,19 +27,19 @@ public class Input {
 
     public Priority readPriority() {
         while (true) {
-            System.out.println("Выберите приоритет задачи:");
-            System.out.println("1) низкий");
-            System.out.println("2) средний");
-            System.out.println("3) высокий");
-            System.out.print("Введите 1/2/3 или слово (низкий/средний/высокий): ");
+            System.out.println("Select task priority:");
+            System.out.println("1) Low");
+            System.out.println("2) Medium");
+            System.out.println("3) High");
+            System.out.print("Enter 1/2/3 or word (low/medium/high): ");
 
             String raw = scanner.nextLine().trim().toLowerCase(Locale.ROOT);
 
-            if (raw.equals("1") || raw.equals("низкий") || raw.equals("low")) return Priority.LOW;
-            if (raw.equals("2") || raw.equals("средний") || raw.equals("medium")) return Priority.MEDIUM;
-            if (raw.equals("3") || raw.equals("высокий") || raw.equals("high")) return Priority.HIGH;
+            if (raw.equals("1") || raw.equals("low")) return Priority.LOW;
+            if (raw.equals("2") || raw.equals("medium")) return Priority.MEDIUM;
+            if (raw.equals("3") || raw.equals("high")) return Priority.HIGH;
 
-            System.out.println("Ошибка: неверный приоритет. Повторите ввод.");
+            System.out.println("Error: invalid priority. Please try again.");
         }
     }
 
@@ -50,8 +50,7 @@ public class Input {
             try {
                 return LocalDate.parse(raw, formatter);
             } catch (DateTimeParseException e) {
-                System.out.println("Ошибка: неверный формат даты. Нужно dd.MM.yyyy (например 25.01.2026). Повторите ввод.");
-            }
+                System.out.println("Error: invalid date format. Use dd.MM.yyyy (e.g., 25.01.2026). Please try again.");            }
         }
     }
 
@@ -61,7 +60,7 @@ public class Input {
             try {
                 return Integer.parseInt(raw);
             } catch (NumberFormatException e) {
-                System.out.print("Ошибка: нужно ввести число. Повторите: ");
+                System.out.print("Error: you need to enter a number. Try again: ");
             }
         }
     }

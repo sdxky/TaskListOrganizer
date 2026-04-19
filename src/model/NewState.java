@@ -12,7 +12,7 @@ public class NewState implements TaskState {
     @Override
     public void moveToDone(Task task) {
         throw new IllegalStateException(
-                "Нельзя изменить статус с NEW на DONE"
+                "Cannot change status from NEW to DONE"
         );
     }
 

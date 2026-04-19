@@ -10,13 +10,8 @@ import java.util.List;
 public class TaskManager {
 
     private final List<Task> tasks = new ArrayList<>();
-//    private final TaskJsonStorage storage;
     private final TaskStorage storage;
 
-    /*public TaskManager(TaskJsonStorage storage) {
-        this.storage = storage;
-        tasks.addAll(storage.load());
-    }*/
 
     public TaskManager(TaskStorage storage) {
         this.storage = storage;

@@ -25,7 +25,7 @@ public class TaskJsonStorage implements TaskStorage {
 
     public List<Task> load() {
         if (!file.exists()) {
-            System.out.println("Файл задач не найден. Будет создан новый.");
+            System.out.println("Task file not found. A new one will be created.");
             return new ArrayList<>();
         }
 
@@ -42,7 +42,7 @@ public class TaskJsonStorage implements TaskStorage {
             return tasks;
 
         } catch (IOException e) {
-            throw new RuntimeException("Ошибка чтения JSON", e);
+            throw new RuntimeException("Error reading JSON", e);
         }
     }
 
@@ -50,7 +50,7 @@ public class TaskJsonStorage implements TaskStorage {
         try (Writer writer = new FileWriter(file)) {
             gson.toJson(tasks, writer);
         } catch (IOException e) {
-            throw new RuntimeException("Ошибка записи JSON", e);
+            throw new RuntimeException("Error writing JSON", e);
         }
     }
 

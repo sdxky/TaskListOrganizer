@@ -14,7 +14,7 @@ public class TaskPostgresStorage implements TaskStorage {
         try {
             this.connection = DriverManager.getConnection(url);
         } catch (SQLException e) {
-            throw new RuntimeException("Ошибка подключения к БД", e);
+            throw new RuntimeException("Database connection error", e);
         }
     }
 
@@ -39,7 +39,7 @@ public class TaskPostgresStorage implements TaskStorage {
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException("Ошибка загрузки задач из БД", e);
+            throw new RuntimeException("Error loading tasks from the database", e);
         }
 
         return tasks;
@@ -71,7 +71,7 @@ public class TaskPostgresStorage implements TaskStorage {
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException("Ошибка сохранения задач в БД", e);
+            throw new RuntimeException("Error saving tasks to the database", e);
         }
     }
 
@@ -80,16 +80,6 @@ public class TaskPostgresStorage implements TaskStorage {
             case NEW         -> task.setState(new NewState());
             case IN_PROGRESS -> task.setState(new InProgressState());
             case DONE        -> task.setState(new DoneState());
-        }
-    }
-
-    public void close() {
-        try {
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        } catch (SQLException e) {
-            System.err.println("Ошибка закрытия соединения: " + e.getMessage());
         }
     }
 }

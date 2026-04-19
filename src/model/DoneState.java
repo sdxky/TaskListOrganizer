@@ -15,21 +15,21 @@ public class DoneState implements TaskState {
     @Override
     public void moveToDone(Task task) {
         throw new IllegalStateException(
-                "Задача уже находится в статусе DONE"
+                "Cannot change the status of a completed task"
         );
     }
 
     @Override
     public void changeDescription(Task task, String newDescription) {
         throw new IllegalStateException(
-                "Нельзя менять описание завершённой задачи"
+                "Cannot change the description of a completed task"
         );
     }
 
     @Override
     public void delete(Task task, TaskManager manager) {
         throw new IllegalStateException(
-                "Нельзя удалить завершённую задачу"
+                "Cannot delete a completed task"
         );
     }
 

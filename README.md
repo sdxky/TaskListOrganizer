@@ -44,7 +44,7 @@
   </tr>
   <tr>
     <td><b>Role</b></td>
-    <td> COMSE25 Student · Java Developer</td>
+    <td> COMSE25 Student</td>
   </tr>
 </table>
 
